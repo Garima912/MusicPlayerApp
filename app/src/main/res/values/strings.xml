@@ -1,3 +1,35 @@
 <resources>
     <string name="app_name">MusicPlayerApp</string>
+    <string-array name="Song_Titles">
+        <item>Attention</item>
+        <item>Bad Guy</item>
+        <item>Believer</item>
+        <item>Blank Space</item>
+        <item>Blinding Lights</item>
+        <item>Eastside</item>
+        <item>Faded</item>
+        <item>I Like Me Better</item>
+        <item>Lose You To Love Me</item>
+        <item>Memories</item>
+        <item>The Middle</item>
+        <item>Night Changes</item>
+        <item>Story Of My Life</item>
+        <item>Willow</item>
+    </string-array>
+    <string-array name="Artist_Names">
+        <item>Charlie Puth</item>
+        <item>Billie Eilish</item>
+        <item>Imagine Dragons</item>
+        <item>Taylor Swift</item>
+        <item>The Weeknd</item>
+        <item>Benny Blanco</item>
+        <item>Alan Walker</item>
+        <item>Lauv</item>
+        <item>Selena Gomez</item>
+        <item>Maroon 5</item>
+        <item>Zedd,Maren Morris,Grey</item>
+        <item>One Direction</item>
+        <item>One Direction</item>
+        <item>Taylor Swift</item>
+    </string-array>
 </resources>
