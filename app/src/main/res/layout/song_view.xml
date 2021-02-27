@@ -3,18 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"
+        android:layout_marginTop="8dp"
+        app:cardBackgroundColor="#616060"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -39,7 +42,8 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginTop="10dp"
                 android:text="TextView"
-                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
                 app:layout_constraintStart_toEndOf="@+id/songImage"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,9 +52,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="1dp"
                 android:text="TextView"
-                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="italic"
                 app:layout_constraintStart_toEndOf="@+id/songImage"
                 app:layout_constraintTop_toBottomOf="@+id/titleTxt" />
         </androidx.constraintlayout.widget.ConstraintLayout>

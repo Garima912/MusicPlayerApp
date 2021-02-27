@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.TextView;
 import java.sql.Time;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String>  artistNames;
     private TextView menuBarTxt;
     private RecyclerView recyclerView;
+    private ArrayList<Uri> songVideoLinks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +33,39 @@ public class MainActivity extends AppCompatActivity {
         menuBarTxt = (TextView) findViewById(R.id.menuTxt);
 
         setUpMenuBar();
+
         songTitles =  new ArrayList<>();
         artistNames = new ArrayList<>();
         songTitles.addAll(Arrays.asList(getResources().getStringArray(R.array.Song_Titles)));
         artistNames.addAll(Arrays.asList(getResources().getStringArray(R.array.Artist_Names)));
+        setUpVideoLinks();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        MyAdapter adapter = new MyAdapter(songTitles,artistNames,thumbnails);
+        MyAdapter adapter = new MyAdapter(songTitles,artistNames,thumbnails,songVideoLinks);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new GridLayoutManager(this,2)); //use this line to see as a grid
         recyclerView.setLayoutManager(new LinearLayoutManager(this)); //use this line to see as a standard vertical list
 
+
+    }
+
+    private void setUpVideoLinks() {
+
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=nfs8NYg7yQM"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=DyDfgMOUjCI"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=7wtfhZwyrcc"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=e-ORhEE9VVg"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=4NRXx6U8ABQ"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=56WBK4ZK_cw"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=60ItHLz5WEA"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=BcqxLCWn-CE"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=zlJDTxahav0"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=SlPhMPnQ58k"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=M3mJkSqZbX4"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=syFZfO_wfMQ"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=W-TE_Ys4iwM"));
+        songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=RsEZmictANA"));
 
     }
 
