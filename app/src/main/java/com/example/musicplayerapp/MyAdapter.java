@@ -31,13 +31,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context context;
     private ArrayList<Uri> songWikiList =  new ArrayList<>();
     private ArrayList<Uri> artistWikiList = new ArrayList<>();
+    private int viewName;
 
-
-    public MyAdapter(ArrayList<String> songTitles, ArrayList<String> songArtists, int[] thumbnails , ArrayList<Uri> videos ) {
+    public MyAdapter(ArrayList<String> songTitles, ArrayList<String> songArtists, int[] thumbnails , ArrayList<Uri> videos , int view) {
         this.titles = songTitles;
         this.artists = songArtists;
         this.songThumbnails = thumbnails;
         this.videoLinks = videos;
+        this.viewName = view;
         setUpSongWikiLinks();
         setUpArtistWikiLinks();
     }
@@ -47,7 +48,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
-        View songView = inflater.inflate(R.layout.song_view, parent, false);
+        View songView;
+        if(viewName == 0){
+            songView = inflater.inflate(R.layout.song_view, parent, false);
+        }
+        else{
+            songView = inflater.inflate(R.layout.song_gridview, parent, false);
+        }
         return new MyViewHolder(songView);
     }
 
@@ -56,22 +63,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.songTitle.setText(titles.get(position));
         holder.artistName.setText(artists.get(position));
         holder.songImageView.setImageResource(songThumbnails[position]);
-
-//        holder.songItem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // create intent, open video link in browser
-//                Log.i("CLICK", "song is clicked");
-//                openWebURL(videoLinks,position);
-////                Uri aUri = videoLinks.get(position) ;
-////                Intent aIntent = new Intent(Intent.ACTION_VIEW);
-////                aIntent.setData(aUri) ;
-////                aIntent.addCategory(Intent.CATEGORY_BROWSABLE) ;
-////                context.startActivity(aIntent);
-//
-//            }
-//        });
-
 
     }
 
@@ -90,15 +81,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             this.itemView = itemView;
-            songImageView = (ImageView) itemView.findViewById(R.id.songImage);
-            songTitle = (TextView) itemView.findViewById(R.id.titleTxt);
-            artistName = (TextView) itemView.findViewById(R.id.artistTxt);
-            songItem = itemView.findViewById(R.id.item_constraintLayout);
+            if(viewName ==  0){
+                songImageView = (ImageView) itemView.findViewById(R.id.songImage);
+                songTitle = (TextView) itemView.findViewById(R.id.titleTxt);
+                artistName = (TextView) itemView.findViewById(R.id.artistTxt);
+                songItem = itemView.findViewById(R.id.item_constraintLayout);
+            }
+            else{
+                songImageView = (ImageView) itemView.findViewById(R.id.songImage2);
+                songTitle = (TextView) itemView.findViewById(R.id.titleTxt2);
+                artistName = (TextView) itemView.findViewById(R.id.artistTxt2);
+                songItem = itemView.findViewById(R.id.item_constraintLayout2);
+            }
             itemView.setOnCreateContextMenuListener(this);
             itemView.setOnClickListener(this);
 
-            //itemView.setOnLongClickListener(this.onCreateContextMenu());
         }
 
         @Override
@@ -132,7 +131,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                 return true;
             }
         };
-
     }
 
     private void openWebURL(ArrayList<Uri> urlList,int position){
@@ -142,7 +140,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         aIntent.addCategory(Intent.CATEGORY_BROWSABLE) ;
         context.startActivity(aIntent);
     }
-
 
     private void setUpArtistWikiLinks() {
         artistWikiList.add(Uri.parse("https://en.wikipedia.org/wiki/Charlie_Puth"));

@@ -1,5 +1,6 @@
 package com.example.musicplayerapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +8,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 import java.sql.Time;
 import java.util.Arrays;
@@ -25,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView menuBarTxt;
     private RecyclerView recyclerView;
     private ArrayList<Uri> songVideoLinks = new ArrayList<>();
+    private int viewType = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +46,42 @@ public class MainActivity extends AppCompatActivity {
         setUpVideoLinks();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        MyAdapter adapter = new MyAdapter(songTitles,artistNames,thumbnails,songVideoLinks);
+        MyAdapter adapter = new MyAdapter(songTitles,artistNames,thumbnails,songVideoLinks,viewType);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
-        //recyclerView.setLayoutManager(new GridLayoutManager(this,2)); //use this line to see as a grid
-        recyclerView.setLayoutManager(new LinearLayoutManager(this)); //use this line to see as a standard vertical list
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+    }
 
+    // create options menu to switch between the grid and list views
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.listView:
+                recyclerView.setLayoutManager(new LinearLayoutManager(this));
+                viewType = 0;
+                MyAdapter adapter_list = new MyAdapter(songTitles,artistNames,thumbnails,songVideoLinks,viewType);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setAdapter(adapter_list);
+                return true;
+
+            case R.id.gridView:
+                recyclerView.setLayoutManager(new GridLayoutManager(this,2));
+                viewType = 1;
+                MyAdapter adapter_grid = new MyAdapter(songTitles,artistNames,thumbnails,songVideoLinks,viewType);
+                recyclerView.setHasFixedSize(true);
+                recyclerView.setAdapter(adapter_grid);
+                return true;
+            default:
+                return  false;
+        }
     }
 
     private void setUpVideoLinks() {
