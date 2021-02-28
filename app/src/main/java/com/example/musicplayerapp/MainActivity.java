@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
         songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=syFZfO_wfMQ"));
         songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=W-TE_Ys4iwM"));
         songVideoLinks.add(Uri.parse("https://www.youtube.com/watch?v=RsEZmictANA"));
-
     }
 
     private void setUpMenuBar() {
