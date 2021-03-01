@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MusicPlayerApp</string>
+    <string name="app_name">Music Player</string>
     <string-array name="Song_Titles">
         <item>Attention</item>
         <item>Bad Guy</item>

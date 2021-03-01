@@ -31,7 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     Context context;
     private ArrayList<Uri> songWikiList =  new ArrayList<>();
     private ArrayList<Uri> artistWikiList = new ArrayList<>();
-    private int viewName;
+    private int viewName;   // 0 for list view and 1 for grid view
 
     public MyAdapter(ArrayList<String> songTitles, ArrayList<String> songArtists, int[] thumbnails , ArrayList<Uri> videos , int view) {
         this.titles = songTitles;
@@ -63,7 +63,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.songTitle.setText(titles.get(position));
         holder.artistName.setText(artists.get(position));
         holder.songImageView.setImageResource(songThumbnails[position]);
-
     }
 
     @Override

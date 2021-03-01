@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -36,15 +37,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         menuBarTxt = (TextView) findViewById(R.id.menuTxt);
-
-        setUpMenuBar();
-
         songTitles =  new ArrayList<>();
         artistNames = new ArrayList<>();
         songTitles.addAll(Arrays.asList(getResources().getStringArray(R.array.Song_Titles)));
         artistNames.addAll(Arrays.asList(getResources().getStringArray(R.array.Artist_Names)));
-        setUpVideoLinks();
 
+        setUpVideoLinks();
+        setUpMenuBar();
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         MyAdapter adapter = new MyAdapter(songTitles,artistNames,thumbnails,songVideoLinks,viewType);
         recyclerView.setHasFixedSize(true);
@@ -104,17 +103,20 @@ public class MainActivity extends AppCompatActivity {
 
     private void setUpMenuBar() {
         int currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
-        if(currentTime >= 3 && currentTime < 12){
-            menuBarTxt.setText("Good Morning");
-        }
-        if(currentTime >= 12 && currentTime <= 16){
-            menuBarTxt.setText("Good Afternoon");
-        }
-        if(currentTime > 16 && currentTime <= 20){
-            menuBarTxt.setText("Good Evening");
-        }
-        if(currentTime > 20 && currentTime < 3 ){
+        Log.i("TIME", String.valueOf(currentTime));
+
+        if(currentTime > 20 || currentTime <= 3 ){
             menuBarTxt.setText("Good Night");
         }
+        else if(currentTime > 3 && currentTime < 12){
+            menuBarTxt.setText("Good Morning");
+        }
+        else if(currentTime >= 12 && currentTime <= 16){
+            menuBarTxt.setText("Good Afternoon");
+        }
+        else if(currentTime > 16 && currentTime <= 20){
+            menuBarTxt.setText("Good Evening");
+        }
+
     }
 }
